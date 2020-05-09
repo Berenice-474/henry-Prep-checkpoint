@@ -1,0 +1,41 @@
+
+#conteiner{
+    display: flex;
+    justify-content: center;
+}
+
+#cajaamarilla{
+    width: 500px;
+    height: 520px;
+    background-color: #f2f542;
+  
+}
+
+h2{
+    color: red;
+    word-spacing: 20mm;
+    padding: 0.5px;
+    margin: 2px 2px;
+    font-size: 25px;
+}
+
+ul{
+    color:red;
+}
+
+#gatitoimagen{
+    width: 250px;
+    height: 300px;
+    margin-right: 125px;
+    margin-left: 125px;
+    
+}
+#sindecorado{
+    padding: none;
+    text-decoration: none;
+    list-style-type: none;
+    }
+a:hover{
+    color: seagreen;
+
+}

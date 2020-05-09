@@ -5,6 +5,21 @@ function menorMayor(numeros) {
   // Escribi una función llamada menorMayor que tome como entrada un arreglo de números y devuelva un arreglo 
   // que contenga el menor número del arreglo en la posición cero y el mayor número del arreglo en la posición 1.
   // Ej: menorMayor([4, 6, 1, 7, 15]) // retorna [1, 15]
+  var nuevoArray = [];
+  var numeroMayor = numeros[0];
+  var numeroMenor = numeros [0];
+
+  for(var i = 1; i < numeros.length ; i ++ ){
+    if(numeros[i] > numeroMayor) {
+      numeroMayor = numeros[i];
+    } else if(numeros[i] < numeroMenor) {
+      numeroMenor = numeros[i];
+    }
+  }
+  nuevoArray.push(numeroMayor);
+   nuevoArray.unshift(numeroMenor);
+   return nuevoArray;
+  
 
 }
 
@@ -14,6 +29,14 @@ function stringMasLarga(strings) {
   // Ej:
   // stringMasLarga(['hi', 'hello', 'ni hao', 'guten tag']); // returns 'guten tag'
   // stringMasLarga(['JavaScript', 'HTML', 'CSS']); // returns 'JavaScript'
+  var strlargo = strings[0];
+
+  for( var i = 1; i < strings.length; i ++){
+    if(strings[i].length > strlargo.length){
+       strlargo = strings[i];      
+    }
+  }
+  return strlargo;
 
 }
 
@@ -24,8 +47,16 @@ function buscarAmigo(amigos, nombre) {
   // Ej:
   //  var amigos = [{ nombre: 'toni', edad: 33 } , { nombre: 'Emi', edad: 25 }];
   //  buscarAmigo(amigos, 'toni') // retorna { nombre: 'toni', edad: 33 };
+  for (var i = 0 ; i < amigos.length; i++){
+   if(amigos[i].nombre === nombre){
+     return amigos[nombre]
+   }
+  }
   
 }
+ 
+
+
 
 function sumArray(array, n) {
   // Escribir un algoritmo que, dada un arreglo de números ordenados y un número n, 
@@ -35,8 +66,18 @@ function sumArray(array, n) {
   // sumArray([2,5,7,10,11,15,20], 13)  // retorna true     2+11 suman 13
   // sumArray([2,5,7,10,11,15,20], 14)  // retorna false
   // pista: podes usar bucles anidados;
-  
-};
+  var valorarray = array[0];
+
+  for( var i = 1; i< array.length ; i ++){
+    valorarray = valorarray + 1 ;
+    for (var i = 0; i< array.length; i++){
+      if( valorarray + array[i] === n){
+        return true
+      }
+      return false
+    }          
+  } 
+}
 
 function pluck(array, propiedad) { 
   // Escribi una función llamada pluck,
@@ -47,8 +88,11 @@ function pluck(array, propiedad) {
   // productos.pluck(productos, 'name') // ['TV LCD', 'Computadora']
   // pista: es una buena oportunidad para usar map.
   
-  
-}
+  var nuevoArray = array.map(function(index){
+    return index[propiedad]; 
+  }) 
+    return nuevoArray;
+    }
 
 // =======================================================================
 
@@ -61,6 +105,10 @@ function crearClasePersona() {
 
   class Persona {
     constructor(nombre, edad, hobbies, amigos) {
+      this.nombre = nombre;
+      this.edad = edad;
+      this.hobbies = hobbies;
+      this.amigos = amigos;
       
     }
 
@@ -68,12 +116,13 @@ function crearClasePersona() {
       // el metodo addFriend recibe un string nombre y un entero edad y debe agregar un objeto:
       // { nombre: nombre, edad: edad} al arreglo de amigos de la persona.
       // no debe retornar nada.
-      
+      this.amigos.push({nombre: nombre, edad: edad});
     }
 
     addHobby(hobby) {
       // este método debe agregar un hobby (hobby) al arreglo de hobbies de la persona.
       // no debe retornar nada.
+      this.hobbies.push(hobby);
       
     }
     getFriends() {
@@ -82,13 +131,17 @@ function crearClasePersona() {
       // Ej:
       // persona.getFriends() // retorna ['toni', 'Leo', 'Manu']
       
+      var amigosNames = this.amigos.map(function(amigo,index){
+        return amigo.nombre
+        });
+        return amigosNames;
     }
 
     getHobbies() {
       // Escribe una función que retorne un arreglo con los hobbies de la persona
       // Ej:
       // persona.getHobbies() // retorna ['correr', 'dormir', 'nadar']
-      
+      return this.hobbies; 
     }
 
     getPromedioEdad() {
@@ -104,7 +157,16 @@ function crearClasePersona() {
       //   }]
       // }
       // persona.getPromedioEdad() // retorna 29
+
+      var promedio = 0;
+      for( var i = 0; i < this.amigos.length; i ++){
+        promedio = promedio + this.amigos[i].edad
+      }
+      var promedio = (promedio / this.amigos.length)
+      return promedio ; 
     }
+
+
   };
 
   return Persona;
