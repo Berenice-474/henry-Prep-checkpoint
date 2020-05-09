@@ -47,16 +47,13 @@ function buscarAmigo(amigos, nombre) {
   // Ej:
   //  var amigos = [{ nombre: 'toni', edad: 33 } , { nombre: 'Emi', edad: 25 }];
   //  buscarAmigo(amigos, 'toni') // retorna { nombre: 'toni', edad: 33 };
-  for (var i = 0 ; i < amigos.length; i++){
-   if(amigos[i].nombre === nombre){
-     return amigos[nombre]
-   }
-  }
   
-}
- 
-
-
+  for (var i = 0 ; i < amigos.length; i++){
+    if(amigos[i].nombre === nombre){
+      return amigos[i]
+    }
+   }
+  } 
 
 function sumArray(array, n) {
   // Escribir un algoritmo que, dada un arreglo de números ordenados y un número n, 
@@ -66,18 +63,23 @@ function sumArray(array, n) {
   // sumArray([2,5,7,10,11,15,20], 13)  // retorna true     2+11 suman 13
   // sumArray([2,5,7,10,11,15,20], 14)  // retorna false
   // pista: podes usar bucles anidados;
-  var valorarray = array[0];
-
-  for( var i = 1; i< array.length ; i ++){
-    valorarray = valorarray + 1 ;
-    for (var i = 0; i< array.length; i++){
-      if( valorarray + array[i] === n){
+  for( var i = 0; i < array.length ; i++) {
+    // tomamos cada elemento del array
+    let currentValue = array[i];
+    for (var j = 0; j < array.length; j++) {
+      // le sumamos cada uno de los elementos y chequeamos si la suma da n
+      if (j == i) {
+        // no considerar el mismo elemento sumandose consigo mismo
+        continue;
+      }
+      if (currentValue + array[j] === n) {
         return true
       }
-      return false
-    }          
+    }
+    return false;          
   } 
 }
+
 
 function pluck(array, propiedad) { 
   // Escribi una función llamada pluck,
